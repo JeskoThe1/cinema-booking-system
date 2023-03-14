@@ -13,7 +13,7 @@ import java.util.List;
 
 public class JDBCUserDao implements UserDao {
     private final String GET_USERS = "select * from user_list";
-    private final String GET_USER = "select * from user where user_id = ?";
+    private final String GET_USER = "select * from user_list where user_id = ?";
     private final String SAVE_USER = "insert into user_list(email, password, login) VALUES(?, ?, ?)";
     private final String UPDATE_USER = "update user_list set email = ?, password = ?, login = ?, is_admin = ? where user_id = ?";
     private final String DELETE_USER = "delete from user_list where user_id = ?";

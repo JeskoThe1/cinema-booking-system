@@ -100,6 +100,7 @@ public class JDBCScreeningDao implements ScreeningDao {
     @Override
     public Movie getFilmScreening(long filmId) {
         JDBCMovieDao movieDao = new JDBCMovieDao();
+        movieDao.setConnection(connection);
         Movie movie = movieDao.get(filmId);
         return movie;
     }

@@ -117,6 +117,7 @@ public class JDBCReservationDao implements ReservationDao {
     @Override
     public User getUserByReservation(long userId) {
         JDBCUserDao userDao = new JDBCUserDao();
+        userDao.setConnection(connection);
         User user = userDao.get(userId);
         return user;
     }
@@ -124,6 +125,7 @@ public class JDBCReservationDao implements ReservationDao {
     @Override
     public Screening getScreeningByReservation(long screeningId) {
         JDBCScreeningDao userDao = new JDBCScreeningDao();
+        userDao.setConnection(connection);
         Screening user = userDao.get(screeningId);
         return user;
     }

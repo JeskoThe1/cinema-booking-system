@@ -2,7 +2,9 @@ package com.application.dao;
 
 import com.application.model.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface SeatReservedDao extends Dao<SeatReserved> {
     List<Seat> getReservedSeats(Screening screening);

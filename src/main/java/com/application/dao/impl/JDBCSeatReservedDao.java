@@ -23,9 +23,9 @@ public class JDBCSeatReservedDao implements SeatReservedDao {
     private final String GET_RESERVED_BY_SCREENING_AND_USER = "select seat_id, row, number from seat s " +
             "join seat_reserved sr using (seat_id) " +
             "join reservation r on r.reservation_id = sr.reservation_id " +
-            "join screening scr on scr.screening_id = sr.screening_id " +
-            "join user_list ul on r.user_id = ul.user_id" +
-            "where scr.screening_id = ? and r.reserved = true and ul.user_id = ?" ;
+            "join screening sc on sc.screening_id = sr.screening_id " +
+            "join user_list ul on r.user_id = ul.user_id " +
+            "where sc.screening_id = ? and r.reserved = true and ul.user_id = ?" ;
     private static final Logger LOGGER = LogManager.getLogger(JDBCSeatReservedDao.class);
     private Connection connection;
     public void setConnection(Connection connection){
@@ -147,6 +147,7 @@ public class JDBCSeatReservedDao implements SeatReservedDao {
     @Override
     public Seat getSeat(long seatId) {
         JDBCSeatDao seatDao = new JDBCSeatDao();
+        seatDao.setConnection(connection);
         Seat seat = seatDao.get(seatId);
         return seat;
     }
@@ -154,6 +155,7 @@ public class JDBCSeatReservedDao implements SeatReservedDao {
     @Override
     public Reservation getReservation(long reservationId) {
         JDBCReservationDao reservationDao = new JDBCReservationDao();
+        reservationDao.setConnection(connection);
         Reservation reservation = reservationDao.get(reservationId);
         return reservation;
     }
@@ -161,6 +163,7 @@ public class JDBCSeatReservedDao implements SeatReservedDao {
     @Override
     public Screening getScreening(long screeningId) {
         JDBCScreeningDao screeningDao = new JDBCScreeningDao();
+        screeningDao.setConnection(connection);
         Screening screening = screeningDao.get(screeningId);
         return screening;
     }

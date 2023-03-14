@@ -14,7 +14,7 @@ public class JDBCSeatDao implements SeatDao {
     private final String GET_SEATS = "select * from seat";
     private final String SAVE_SEAT = "insert into seat(row, number) values(?, ?)";
     private final String UPDATE_SEAT = "update seat set row = ?, number = ? where seat_id = ?";
-    private final String DELETE_SEAT = "update seat set row = ?, number = ? where seat_id = ?";
+    private final String DELETE_SEAT = "delete from seat where seat_id = ?";
     private static final Logger LOGGER = LogManager.getLogger(JDBCSeatDao.class);
     private Connection connection;
     public void setConnection(Connection connection){
